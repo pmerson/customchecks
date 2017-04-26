@@ -1,0 +1,487 @@
+<rules>
+
+  <!-- As categorias SonarQube para regras sao: Efficiency, Maintainability, Portability, Reliability, Usability -->
+  <!-- Priority is the default severity of that rule; can be changed in each quality profile -->
+  
+  <!--   				Arqref7			 	-->
+
+<!--  desativado ate revisao da arquitetura em camadas da arqref7 -->       
+<!--   <rule> -->
+<!--     <key>br.gov.tcu.checks.arqref7.CheckCtlCallsDao</key> -->
+<!--     <name>Check Ctl calls Dao</name> -->
+<!--     <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref7.CheckCtlCallsDao</configKey> -->
+<!--     <category name="Maintainability"/> -->
+<!--     <priority>BLOCKER</priority> -->
+<!--     <description>Classe com prefixo Ctl nao pode usar diretamente classe com prefixo Dao. -->
+<!-- 	Classes com sufixo 'Test' sao uma excecao.</description> -->
+<!--   </rule> -->
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref7.CheckDaoCallsSvn</key>
+    <name>Check TCU classe Dao chama Svn</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref7.CheckDaoCallsSvn</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Classe com prefixo Dao nao pode usar diretamente classe
+	com prefixo Svn (independente do Dao e Svn terem o mesmo sufixo).</description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref7.CheckDtoCallsSvlActBkbCtlSvnDao</key>
+    <name>Check TCU classe Dto chama Svl, Act, Bkb, Ctl, Svn, ou Dao</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref7.CheckDtoCallsSvlActBkbCtlSvnDao</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Classe com prefixo Dto nao pode usar diretamente classe com prefixo
+	Svl, Act, Bkb, Ctl, Svn ou Dao.</description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref7.CheckImproperTcuUtilUsage</key>
+    <name>Check TCU uso inapropriado de metodos da classe Container e/ou ContextObject</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref7.CheckImproperTcuUtilUsage</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Classe fora de tcu.util nao pode usar diretamente: Container.devolveConexaoAoPool(...) ou
+	ContextObject.getPersistencia(boolean cria)</description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref7.CheckJdbcOutsideDao</key>
+    <name>Check TCU chamada a API JDBC fora de classe Dao</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref7.CheckJdbcOutsideDao</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Classe que nao seja Dao nao deve fazer chamada a API JDBC.
+	Detalhes:
+	Classes nos pacotes tcu.util.container e tcu.util.persistencia sao uma excecao, isto e, podem fazer chamadas JDBC.
+	Classes com sufixo Test sao tambem excecao. Ha outras excecoes indicadas no codigo do Check.
+	Um import de jdbc e suficiente para caracterizar a violacao.</description>
+  </rule>
+
+<!-- Nao roda no sonar por causa da verificacao de entidade mapeada  -->  
+<!--   <rule> -->
+<!--     <key>br.gov.tcu.checks.arqref7.CheckMappedEntityExtendsEntidade</key> -->
+<!--     <name>Check mapped entity extends entidade</name> -->
+<!--     <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref7.CheckMappedEntityExtendsEntidade</configKey> -->
+<!--     <category name="Maintainability"/> -->
+<!--     <priority>BLOCKER</priority> -->
+<!--     <description>placeholder</description> -->
+<!--   </rule> -->
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref7.CheckPersistenciaAsParameterOrMemberVariable</key>
+    <name>Check TCU classe possui persistencia como parametro ou variavel membro</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref7.CheckPersistenciaAsParameterOrMemberVariable</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Nenhuma classe deve possuir variaveis membro (de instancia ou static)
+	do tipo IPersistencia ou do tipo PersistenciaHibernate.
+	Alêm disso, nenhum metodo público ou construtor deve ter parametro do tipo
+	IPersistencia ou PersistenciaHibernate.</description>
+  </rule>
+  
+<!--   <rule> -->
+<!--     <key>br.gov.tcu.checks.arqref7.CheckPojoCallsSvlActBkbCtlDtoSvnDao</key> -->
+<!--     <name>Check pojo calls svl act bkb ctl dto svn dao</name> -->
+<!--     <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref7.CheckPojoCallsSvlActBkbCtlDtoSvnDao</configKey> -->
+<!--     <category name="Maintainability"/> -->
+<!--     <priority>BLOCKER</priority> -->
+<!--     <description>Classe POJO (como entendido na arquitetura de referência) nao pode chamar ou herdar -->
+<!-- 	de classes com prefixo Svl, Act, Bkb, Ctl, Dto, Svn ou Dao.</description> -->
+<!--   </rule> -->
+  
+   <rule>
+    <key>br.gov.tcu.checks.arqref7.CheckSvlActBkbCallsSvnDao</key>
+    <name>Check TCU classes Svl, Act, ou Bkb chamam Svn ou Dao</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref7.CheckSvlActBkbCallsSvnDao</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Classe com prefixo Svl, Act ou Bkb nao pode usar diretamente classe com prefixo Svn ou Dao</description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref7.CheckSvnConstructorInstantiatesDao</key>
+    <name>Check TCU construtor de classe Svn instancia Dao</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref7.CheckSvnConstructorInstantiatesDao</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Construtor de classe com prefixo Svn nao deve instanciar classe com prefixo Dao</description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref7.CheckUsuarioInCtlSvnConstructor</key>
+    <name>Check TCU objeto Usuario em construtor de classe Ctl ou Svn</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref7.CheckUsuarioInCtlSvnConstructor</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Objeto do tipo tcu.util.seguranca.Usuario nao deve ser passado como parametro em construtor de classe Ctl ou Svn. Onde for
+	necessario acessar o usuario corrente, deve-se usar ContextObject.getUsuario().</description>
+  </rule>
+  
+  <!--   				Arqref8			 	-->
+	<!-- Nao roda no sonar por causa da verificacao de entidade mapeada  -->  
+	<!--   <rule> -->
+	<!--     <key>br.gov.tcu.checks.arqref8.CheckDaoConstraints</key> -->
+	<!--     <name>Check dao constraints</name> -->
+	<!--     <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckDaoConstraints</configKey> -->
+	<!--     <category name="Maintainability"/> -->
+	<!--     <priority>BLOCKER</priority> -->
+	<!--     <description>placeholder</description> -->
+	<!--   </rule> -->
+
+
+	  
+	<rule>
+	  <key>br.gov.tcu.checks.arqref8.CheckDaoIsDaoHibernateJpaAbstrato</key>
+	  <name>Check TCU classe Dao tem heranca obrigatoria</name>
+	  <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckDaoIsDaoHibernateJpaAbstrato</configKey>
+	  <category name="Maintainability"/>
+	  <priority>BLOCKER</priority>
+	  <description> Classe com a anotacaoo @Dao deve, obrigatoriamente, ter o prefixo "Dao" no nome.
+	  Alem disso, a classe deve herdar direta ou indiretamente de DaoHibernateJpaAbstrato.
+	Classe com o prefixo Dao mas sem a anotacao @Dao deve, obrigatoriamente, herdar de DaoGenerico.</description>
+	</rule>	  
+	  
+   <rule>
+    <key>br.gov.tcu.checks.arqref8.CheckEntityHasValidMethodPreencherComValoresPersistiveis</key>
+    <name>Check TCU entidade possui metodo preencherComValoresPersistiveis valido</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckEntityHasValidMethodPreencherComValoresPersistiveis</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Metodo preencherComValoresPersistiveis() em uma @Entity nao pode ser vazio.</description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref8.CheckEntityCallsUpperLayer</key>
+    <name>Check TCU entidade chama camada superior</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckEntityCallsUpperLayer</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>classe que possui a anotacao @Entity ou possui "extends Entidade" nao pode possuir referências a classes com
+     prefixo Svl, Act, Bkb, Ctl, Dto, Svn, Dao, Dms, Servico, MBean ou Executor.</description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref8.CheckDomainLayerCallsApplicationOrPresentation</key>
+    <name>Check TCU camada de dominio chama camada de Aplicacao ou Apresentacao</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckDomainLayerCallsApplicationOrPresentation</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Classe da camada de dominio nao deve depender de classes das camadas superiores. Veja ArqRef8.0 - Camadas na wiki.</description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref8.CheckEntityMissingExtends</key>
+    <name>Check TCU entidade tem heranca obrigatoria</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckEntityMissingExtends</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>classe que possui a anotacao @Entity deve possuir uma clausula extends</description>
+  </rule>
+  
+  <rule>
+	<key>br.gov.tcu.checks.arqref8.CheckEjbFollowsNamingConvention</key>
+	<name>Check TCU EJB segue padrao de nomenclatura</name>
+	<configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckEjbFollowsNamingConvention</configKey>
+	<category name="Maintainability"/>
+	<priority>BLOCKER</priority>
+	<description>Pela convencao de nomes da ARQREF8, o nome de um servico EJB deve iniciar por "Servico" e terminar com "Bean".</description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref8.CheckEjbMissingExtends</key>
+    <name>Check TCU EJB tem heranca obrigatoria</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckEjbMissingExtends</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>EJBs (classe com @Stateless ou @Stateful) devem herdar de ServicoEJBArqRef7Abstrato ou de 
+    ServicoEJBArqRef8Abstrato. Se o EJB for do corporativo, deve herdar de ServicoEJBArqRef7Abstrato.</description>
+  </rule>
+  
+<!-- Nao roda no sonar por causa da verificacao de entidade mapeada  -->  
+<!--    <rule> -->
+<!--     <key>br.gov.tcu.checks.arqref8.CheckMappedEntityExtendsEntidade</key> -->
+<!--     <name>Check mapped entity extends entidade</name> -->
+<!--     <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckMappedEntityExtendsEntidade</configKey> -->
+<!--     <category name="Maintainability"/> -->
+<!--     <priority>BLOCKER</priority> -->
+<!--     <description>placeholder</description> -->
+<!--   </rule> -->
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref8.CheckOneToManyMappingReturnsListOrCollection</key>
+    <name>Check TCU mapeamento um-para-n retorna List ou Collection</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckOneToManyMappingReturnsListOrCollection</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Metodo que mapeia associacao one-to-many deve retornar List ou Collection para que a integracao com JSF seja transparente</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.arqref8.CheckServiceClassMustHavePrefixServico</key>
+    <name>Check TCU classe de Servico deve ter prefixo Servico</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckServiceClassMustHavePrefixServico</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Classe com a anotacao @Servico deve, obrigatoriamente, ter o prefixo "Servico" no nome.</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.arqref8.CheckSlsbHasNoInstanceVariables</key>
+    <name>Check TCU SLSB nao deve possuir variaveis de instancia</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckSlsbHasNoInstanceVariables</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Um SLSB nao deve conter variavel de instancia porque seu valor pode vir com lixo de execucoes anteriores.</description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref8.CheckReferenciaIdentidadeNaoEhUsada</key>
+    <name>Check TCU uso incorreto de referencia_entidade</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckReferenciaIdentidadeNaoEhUsada</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>A tabela REFERENCIA_IDENTIDADE nao pode ser mapeada ou usada diretamente no codigo dos sistemas. </description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.arqref8.CheckDataAccessOutsideDomainLayer</key>
+    <name>Check TCU classe fora da camada de dominio nao deve usar HQL, JPQL ou JDBC</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.arqref8.CheckDataAccessOutsideDomainLayer</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Classe fora do pacote "br.gov.tcu.nomeSistema.dominio.*" nao deve chamar metodos 
+    createNamedQuery, createNativeQuery, createQuery, createSQLQuery, createStatement, getQuery, getSQLQuery ou prepareStatement.</description>
+  </rule>
+
+  <!--   			Coding			 -->
+  
+  <rule>
+    <key>br.gov.tcu.checks.coding.CheckAssertKeyword</key>
+    <name>Check TCU palavra-chave assert</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.coding.CheckAssertKeyword</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Apenas acusa o uso da palavra-chave assert</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.coding.CheckCatchExceptionThrowNewException</key>
+    <name>Check TCU clausula catch Exception relanca nova Exception</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.coding.CheckCatchExceptionThrowNewException</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Clausula catch que captura Exception nao deve executar throw new Exception</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.coding.CheckCatchSilentlyConsumesException</key>
+    <name>Check TCU clausula catch silencia excecao</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.coding.CheckCatchSilentlyConsumesException</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Verifica existe um bloco catch silenciando uma excecao</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.coding.CheckCatchThrowsCaughtException</key>
+    <name>Check TCU clausula catch relanca a excecao recebida</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.coding.CheckCatchThrowsCaughtException</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Verifica se um bloco catch relanca a excecao recebida</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.coding.CheckCloseStatement</key>
+    <name>Check TCU comando close deve ser chamado</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.coding.CheckCloseStatement</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Blocos de codigo que invocam Connection.prepareStatement(...), Connection.prepareCall(...) ou 
+    Connection.createStatement(...) devem conter um bloco finally no qual e chamada ContextObject.closeStatement(Statement)</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.coding.CheckImproperConversionToExcecaoNegocioUsuario</key>
+    <name>Check TCU conversao indevida para ExcecaoNegocio</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.coding.CheckImproperConversionToExcecaoNegocioUsuario</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Catch de Exception, SQLException e RuntimeException nao deve 
+    converter essa excecao em ExcecaoNegocio ou ExcecaoUsuario.</description>
+  </rule>
+  
+  
+	<!--  ESSA CHECK NaO pode ser usada no hook svn porque o hook verifica o arquivo sendo -->
+	<!--  comitado em uma pasta temporaria cujo caminho completo nao tem nada ver com -->
+	<!--  a estrutura que existe no SVN. -->
+	<!--    <rule> -->
+	<!--     <key>br.gov.tcu.checks.coding.CheckJUnitInSrcMain</key> -->
+	<!--     <name>Check junit in src main</name> -->
+	<!--     <configKey>Checker/TreeWalker/br.gov.tcu.checks.coding.CheckJUnitInSrcMain</configKey> -->
+	<!--     <category name="Maintainability"/> -->
+	<!--     <priority>BLOCKER</priority> -->
+	<!--     <description>Verifica a regra: classes de teste unitario JUnit devem estar abaixo de src/test/java.</description> -->
+	<!--   </rule> -->
+
+  <rule>
+    <key>br.gov.tcu.checks.coding.CheckRuntimeExceptionMissingCause</key>
+    <name>Check TCU RuntimeException sem parametro cause</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.coding.CheckRuntimeExceptionMissingCause</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Verifica que usou construtor de RuntimeException com parametro cause</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.coding.CheckReturnInFinally.java</key>
+    <name>Check TCU comando return em bloco finally</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.coding.CheckReturnInFinally</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Um bloco finally nao deve conter um comando return</description>
+  </rule>
+  
+    <!-- Nao roda no sonar por causa da verificacao de entidade mapeada  --> 
+	<!--    <rule> -->
+	<!--     <key>br.gov.tcu.checks.coding.CheckThreadIsGivenTransactionalObject</key> -->
+	<!--     <name>Check thread is given transactional object</name> -->
+	<!--     <configKey>Checker/TreeWalker/br.gov.tcu.checks.coding.CheckThreadIsGivenTransactionalObject</configKey> -->
+	<!--     <category name="Maintainability"/> -->
+	<!--     <priority>BLOCKER</priority> -->
+	<!--     <description>No construtor de uma thread nao se pode passar como parametro uma entidade mapeada, -->
+	<!-- 	objeto do tipo IPersistencia, ou qualquer objeto em pacote java.sql, -->
+	<!-- 	javax.sql ou org.hibernate. A regra e que uma thread nao deve receber um objeto -->
+	<!-- 	com contexto transacional.</description> -->
+	<!--   </rule> -->
+  
+  <rule>
+    <key>br.gov.tcu.checks.coding.CheckThrowNewException</key>
+    <name>Check TCU lancamento de excecao do tipo Exception</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.coding.CheckThrowNewException</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Bloco throw nao deve lancar Exception, deve-se utilizar uma subclasse da mesma.</description>
+  </rule>
+  
+  
+  <!--  					Security 					-->
+  
+  <rule>
+    <key>br.gov.tcu.checks.security.CheckExecExternalProcess</key>
+    <name>Check TCU chamada a comandos shell</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.security.CheckExecExternalProcess</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>A chamada a comandos de shell e processos externos e um risco de seguranca. Esse tipo de chamada deve ser evitado,
+	principalmente em aplicacoes web.</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.security.CheckHardcodedPassword</key>
+    <name>Check TCU senha hardcoded</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.security.CheckHardcodedPassword</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Esta check acusa uma violacao quando uma variavel com o nome 'senha', 'password' ou pwd
+ 	recebe uma atribuicao de uma valor literal na classe em analise.</description>
+  </rule>
+
+<!-- Nao roda no sonar por causa da reflexao   -->
+<!--    <rule> -->
+<!--     <key>br.gov.tcu.checks.security.CheckNonSerializableInHttpSession</key> -->
+<!--     <name>Check Non Serializable In Http Session</name> -->
+<!--     <configKey>Checker/TreeWalker/br.gov.tcu.checks.security.CheckNonSerializableInHttpSession</configKey> -->
+<!--     <category name="Maintainability"/> -->
+<!--     <priority>BLOCKER</priority> -->
+<!--     <description>placeholder</description> -->
+<!--   </rule> -->
+ 
+   <rule>
+    <key>br.gov.tcu.checks.security.CheckNonStaticFinalServletVariable</key>
+    <name>Check TCU classe Servlet possui atributos nao constantes</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.security.CheckNonStaticFinalServletVariable</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Atributos de classe Servlet devem ser static final. Check ignora classes cujo pacote nao inicie com "tcu." ou "br.gov.tcu.".</description>
+  </rule>
+ 
+<!-- Nao roda no sonar por causa da verificacao de entidade mapeada  --> 
+<!--    <rule> -->
+<!--     <key>br.gov.tcu.checks.security.CheckPojoCallsSvlActBkbCtlDtoSvnDao</key> -->
+<!--     <name>Check Pojo Calls Svl Act Bkb Ctl Dto Svn Dao</name> -->
+<!--     <configKey>Checker/TreeWalker/br.gov.tcu.checks.security.CheckPojoCallsSvlActBkbCtlDtoSvnDao</configKey> -->
+<!--     <category name="Maintainability"/> -->
+<!--     <priority>BLOCKER</priority> -->
+<!--     <description>Bloco throw nao deve lancar Exception deve-se utilizar uma subclasse da mesma.</description> -->
+<!--   </rule> -->
+  
+    <rule>
+    <key>br.gov.tcu.checks.security.CheckSecurityRelatedMethodsAreFinal</key>
+    <name>Check TCU metodos relacionados a seguranca sao final</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.security.CheckSecurityRelatedMethodsAreFinal</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>
+    Este check reforca a seguinte boa pratica de seguranca:
+    Metodos nao finais que realizam testes de seguranca nao podem ser sobrescritos de forma a burlar os testes
+    Metodos em uma classe final sao considerados como metodos finais.</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.security.CheckServletIsServletProtegidaAbstrata</key>
+    <name>Check TCU Servlet tem heranca obrigatoria</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.security.CheckServletIsServletProtegidaAbstrata</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>
+    Toda classe anotada com @WebServlet (ou que herde de HttpServlet) e que
+	esteja fora do pacote br.gov.tcu.arquitetura deve herdar de br.gov.tcu.arquitetura.servlet.ServletProtegidaAbstrata e deve
+ 	possuir o prefixo Servlet.</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.security.CheckSqlInjectionHibernate</key>
+    <name>Check TCU query do hibernate suscetivel a SQL injection</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.security.CheckSqlInjectionHibernate</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>
+ 	Se o valor da String usada em queries executadas pelo hibernate e atribuido na classe sendo
+	validada, essa atribuicao a String nao deve conter concatenacao envolvendo uma variavel.
+	Concatenacao ('+') de dois literais string e permitida; a violacao existe quando um dos
+	operandos e uma variavel.
+	</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.security.CheckSqlInjectionPreparedStatement</key>
+    <name>Check TCU comando PreparedStatement suscetivel a SQL injection</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.security.CheckSqlInjectionPreparedStatement</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Se o valor da String usada num PreparedStatement e atribuido na classe sendo validada,
+    essa atribicao a String nao deve conter concatenacao envolvendo uma variavel</description>
+  </rule>
+  
+   <rule>
+    <key>br.gov.tcu.checks.security.CheckSqlInjectionStatement</key>
+    <name>Check TCU comando Statement suscetivel a SQL injection</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.security.CheckSqlInjectionStatement</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>Deve-se usar Connection.prepareStatement(...) em vez de Connection.createStatement(...).</description>
+  </rule>
+  
+  <rule>
+    <key>br.gov.tcu.checks.security.CheckSystemExitCalls</key>
+    <name>Check TCU chamadas a System.exit() fora do escopo da main</name>
+    <configKey>Checker/TreeWalker/br.gov.tcu.checks.security.CheckSystemExitCalls</configKey>
+    <category name="Maintainability"/>
+    <priority>BLOCKER</priority>
+    <description>O metodo System.exit() nao deve ser utilizado fora do metodo main.</description>
+  </rule>
+
+ </rules>

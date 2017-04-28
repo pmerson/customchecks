@@ -1,8 +1,7 @@
-# Projetos java com maven e eclipse #
-###################
 .project
 .classpath
 .settings
 target
+report
 
 /app.log

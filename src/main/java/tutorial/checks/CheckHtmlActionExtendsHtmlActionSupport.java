@@ -30,10 +30,12 @@ public class CheckHtmlActionExtendsHtmlActionSupport extends CustomCheck {
     }
 
     private boolean extendsHtmlActionSupport(DetailAST classDefToken) {
-        DetailAST implementsToken = classDefToken.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE);
-        String superClassName = getSuperClassName(classDefToken);
-        if (superClassName != null && superClassName.equals("HTMLActionSupport")) {
-            return true;
+        DetailAST extendsToken = classDefToken.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
+        if (extendsToken != null) {
+            String superClass = extendsToken.getFirstChild().getText();
+            if (superClass.endsWith("HTMLActionSupport")) {
+                return true;
+            }
         }
         return false;
     }

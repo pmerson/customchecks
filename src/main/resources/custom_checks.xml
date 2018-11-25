@@ -11,9 +11,9 @@
 <!--             name="tutorial.checks.CheckProcessManagerCallsOpc"> -->
 <!--         </module> -->
         
-<!--         <module -->
-<!--             name="tutorial.checks.CheckHtmlActionExtendsHtmlActionSupport"> -->
-<!--         </module> -->
+        <module
+            name="tutorial.checks.CheckHtmlActionExtendsHtmlActionSupport">
+        </module>
         
     </module>
 </module>
